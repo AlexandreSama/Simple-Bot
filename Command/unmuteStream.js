@@ -6,7 +6,9 @@ module.exports.run = (client, message) => {
     
     const user =  message.mentions.members.first();
 
-    if(message.member.roles.cache.some(role => role.name === 'dev de rêve' || 'modo' || 'garde rapprochée' || 'admin-technicien')){
+    const channel = client.channels.cache.get(748223617665466448);
+
+    if(message.member.roles.cache.some(role => role.name === 'dev de rêve' || 'modo' || 'garde rapprochée' || 'admin-technicien') & user.voice.id === channel.id){
         user.voice.setMute(false, "Fais attention la prochaine fois")
         user.send("tu a été démute, fais attention la prochaine fois !")
     }else{
