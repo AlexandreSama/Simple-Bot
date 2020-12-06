@@ -6,7 +6,7 @@ module.exports.run = (client, message) => {
     
     const user =  message.mentions.members.first();
 
-    if(message.member.roles.cache.some(role => role.name === 'dev de rêve' || 'modo' || 'garde-rapprochée' || 'admin-technicien')){
+    if(message.member.roles.cache.some(role => role.name === 'dev de rêve' || 'modo' || 'garde rapprochée' || 'admin-technicien')){
         user.voice.setMute(false, "Fais attention la prochaine fois")
         user.send("tu a été démute, fais attention la prochaine fois !")
     }else{

@@ -6,7 +6,7 @@ module.exports.run = async (client, message, member) => {
 
     message.delete();
 
-    if(message.member.roles.cache.some(role => role.name === 'dev de rêve' || 'modo' || 'garde-rapprochée' || 'admin-technicien')){
+    if(message.member.roles.cache.some(role => role.name === 'dev de rêve' || 'modo' || 'garde rapprochée' || 'admin-technicien')){
         // Const pour retenir le nom de la commande (on ajoute un espace a la fin pour ne pas mal découpé le message)
         const commandName = "!createcalendar ";
 
