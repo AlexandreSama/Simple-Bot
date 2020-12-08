@@ -7,7 +7,9 @@ module.exports.run = async (client, message) => {
 
     let date = new Date();
 
-    console.log(date)
+    let day = date.getDay();
+
+    console.log(day)
 
     // fs.readFile("./streamCalendar.json", async (err, data) => {
 
