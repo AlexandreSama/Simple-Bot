@@ -5,11 +5,19 @@ module.exports.run = async (client, message) => {
 
     message.delete();
 
-    let date = new Date();
+    var d = new Date();
+    var weekday = new Array(7);
+    weekday[0] = "Dimanche";
+    weekday[1] = "Lundi";
+    weekday[2] = "Mardi";
+    weekday[3] = "Mercredi";
+    weekday[4] = "Jeudi";
+    weekday[5] = "Vendredi";
+    weekday[6] = "Samedi";
 
-    let day = date.getDay();
+    var n = weekday[d.getDay()];
 
-    console.log(day)
+    console.log(n)
 
     // fs.readFile("./streamCalendar.json", async (err, data) => {
 
