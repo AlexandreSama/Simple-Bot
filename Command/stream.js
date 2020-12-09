@@ -7,21 +7,20 @@ module.exports.run = async (client, message) => {
 
     var d = new Date();
     var weekday = new Array(7);
-    weekday[0] = "Dimanche";
-    weekday[1] = "Lundi";
-    weekday[2] = "Mardi";
-    weekday[3] = "Mercredi";
-    weekday[4] = "Jeudi";
-    weekday[5] = "Vendredi";
-    weekday[6] = "Samedi";
+    weekday[0] = "dimanche";
+    weekday[1] = "lundi";
+    weekday[2] = "mardi";
+    weekday[3] = "mercredi";
+    weekday[4] = "jeudi";
+    weekday[5] = "vendredi";
+    weekday[6] = "samedi";
 
     var n = weekday[d.getDay()];
 
-    console.log(n)
-
-    // fs.readFile("./streamCalendar.json", async (err, data) => {
-
-    // })
+    fs.readFile("./streamCalendar.json", async (err, data) => {
+        let datas = JSON.parse(data)
+        message.channel.send("Aujourd'hui, nous allons faire un live sur " + datas[n] + " !")
+    })
 
 }
 
