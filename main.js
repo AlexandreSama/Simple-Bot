@@ -53,6 +53,7 @@ client.on('message', async (message) => {
     }
 
     if(message.content === 'streambot'){
+      console.log("ici ?")
       message.channel.send(aléatoire)
     }
 
