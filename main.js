@@ -41,6 +41,8 @@ client.on('message', async (message) => {
     const messageArray = message.content.split(/\s+/g);
     const command = messageArray[0];
     const args = messageArray.slice(1);
+    const réponses = ["oui ?","On parle de moi ?","Ouais ouais, je sais ! Ce soir, y a l'autre qui stream"]
+    let aléatoire = réponses[Math.floor(Math.random()*réponses.length)];
   
     if (!command.startsWith(prefix)) return;
   
@@ -51,7 +53,7 @@ client.on('message', async (message) => {
     }
 
     if(message.content === 'streambot'){
-      message.channel.send("oui ?" || "On parle de moi ?" || "Ouais ouais, je sais ! Ce soir, y a l'autre qui stream")
+      message.channel.send(aléatoire)
     }
 
 });
