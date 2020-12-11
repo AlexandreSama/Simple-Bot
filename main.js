@@ -41,8 +41,6 @@ client.on('message', async (message) => {
     const messageArray = message.content.split(/\s+/g);
     const command = messageArray[0];
     const args = messageArray.slice(1);
-    const réponses = ["oui ?","On parle de moi ?","Ouais ouais, je sais ! Ce soir, y a l'autre qui stream"]
-    let aléatoire = réponses[Math.floor(Math.random()*réponses.length)];
   
     if (!command.startsWith(prefix)) return;
   
@@ -50,11 +48,6 @@ client.on('message', async (message) => {
     if (cmd) cmd.run(client, message, args);
     if (message.author.bot) {
       return;
-    }
-
-    if(message.content == 'streambot'){
-      console.log("ici ?")
-      message.channel.send(aléatoire)
     }
 
 });
