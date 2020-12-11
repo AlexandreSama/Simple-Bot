@@ -50,5 +50,9 @@ client.on('message', async (message) => {
       return;
     }
 
+    if(message.content === 'streambot'){
+      message.channel.send("oui ?" || "On parle de moi ?" || "Ouais ouais, je sais ! Ce soir, y a l'autre qui stream")
+    }
+
 });
 client.login('');
