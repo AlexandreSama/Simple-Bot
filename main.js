@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
 const fs = require('fs');
-const prefix = ':';
+const prefix = ',';
 const canvas = require("discord-canvas"),
   goodbyeCanvas = new canvas.Goodbye(),
   welcomeCanvas = new canvas.Welcome();
@@ -51,4 +51,4 @@ client.on('message', async (message) => {
     }
 
 });
-client.login('');
+client.login('NzgzNDYxNDM4NDgzNDY0MjIz.X8bFUg.pxr_1QL0TroVT73KpNCxYjJ0qZo');

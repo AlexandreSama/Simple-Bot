@@ -91,7 +91,7 @@ module.exports.run = async (client, message, member) => {
             ctx.fillStyle = '#ffffff';
             ctx.fillText(`${datas['jeudi']}`, canvas.width / 1.2, canvas.height / 4.4);
         
-            // Add an exclamation point here and below
+            // Vendredi
             ctx.font = applyText(canvas, `Vendredi :`);
             ctx.fillStyle = '#ffffff';
             ctx.fillText(`Vendredi :`, canvas.width / 1.5, canvas.height / 2.5);
@@ -100,7 +100,7 @@ module.exports.run = async (client, message, member) => {
             ctx.fillStyle = '#ffffff';
             ctx.fillText(`${datas['vendredi']}`, canvas.width / 1.2, canvas.height / 2.5);
         
-            // Add an exclamation point here and below
+            // Samedi
             ctx.font = applyText(canvas, `Samedi :`);
             ctx.fillStyle = '#ffffff';
             ctx.fillText(`Samedi :`, canvas.width / 1.5, canvas.height / 1.7);
@@ -127,14 +127,16 @@ module.exports.run = async (client, message, member) => {
             ctx.fillStyle = '#ffffff';
             ctx.fillText(`Si je ne suis pas présent a l'heure habituel, faites attention aux ping !`, canvas.width / 4, canvas.height / 1.1);
         
-        
+            // Make All CTX on Blank Canvas
             ctx.beginPath();
             ctx.arc(125, 125, 100, 0, Math.PI * 2, true);
             ctx.closePath();
             ctx.clip();
         
+	    // Create Attachment with the Canvas
             const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'welcome-image.png');
-        
+            
+           // Send it to the Author of the Commands
             message.author.send(`Calendrier de la semaine ! (clique sur l'image pour voir en grand)`, attachment);
         }
       });

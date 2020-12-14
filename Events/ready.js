@@ -1,6 +1,6 @@
 module.exports = (client) => {
 
-    console.log("Bot Prêt");
+    console.log("J'suis ok mek !");
 
-    client.user.setActivity(":help pour de l'aide | Je vous surveille lors des stream", {type: 'WATCHING'})
+    client.user.setActivity("Patou le BG", {type: 'WATCHING'})
 };
