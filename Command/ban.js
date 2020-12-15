@@ -9,7 +9,7 @@ module.exports.run = (client, message, member) => {
 
     const commandName = ",ban ";
 
-    let messageArray = message.content.substring(commandName.length).split(",");
+    let messageArray = message.content.substring(commandName.length).split(" | ");
 
     if(message.member.roles.cache.some(role => role.name === 'dev de rêve' || 'modo' || 'garde rapprochée' || 'admin-technicien')){
 
