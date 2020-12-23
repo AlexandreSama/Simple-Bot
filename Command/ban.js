@@ -17,7 +17,7 @@ module.exports.run = (client, message, member) => {
             reason: messageArray[1]
         }).catch(console.error);
 
-        user.send("Tu a été unmute, fais attention a toi la prochaine fois");
+        user.send("Tu a été ban, a la prochaine");
 
     }else{
 
