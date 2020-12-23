@@ -6,6 +6,6 @@ module.exports = (client) => {
 
     setInterval(() => {
 	const index = Math.floor(Math.random() * (activiter.length - 1) + 1);
-	client.user.setActivity(activiter[index]);
+	client.user.setActivity(activiter[index], 'WATCHING');
     }, 15000);
 };
