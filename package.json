@@ -9,13 +9,19 @@
   "author": "Alexandre",
   "license": "ISC",
   "dependencies": {
+    "@discordjs/opus": "^0.3.3",
     "canvacord": "^5.0.8",
     "canvas": "^2.6.1",
     "canvas-text-wrapper": "^0.10.2",
     "discord-canvas": "^1.4.1",
+    "discord-player": "^3.2.1",
     "discord.js": "^12.5.1",
+    "ffmpeg": "0.0.4",
     "googleapis": "^65.0.0",
+    "i": "^0.3.6",
     "moment": "^2.29.1",
-    "node-google-calendar": "^1.1.1"
+    "node-google-calendar": "^1.1.1",
+    "webp-converter": "^2.3.1",
+    "yt-search": "^2.5.1"
   }
 }
