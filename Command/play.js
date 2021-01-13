@@ -5,7 +5,7 @@ module.exports.run = (client, message) => {
 
 const player = new Player(client);
 
-const prefix = '!';
+const prefix = ',';
 
 client.player = player;
 
