@@ -3,13 +3,8 @@ const { Player } = require('discord-player');
 
 module.exports.run = (client, message) => {
 
-const player = new Player(client);
-
-client.player = player;
-
-client.player.stop("Je m'arrête la !")
-
-
+    message.guild.voice.kick();
+    message.channel.send("Adieu !")
 }
 
 module.exports.help = {
