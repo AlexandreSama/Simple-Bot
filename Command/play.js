@@ -31,7 +31,7 @@ module.exports.run = async (client, message) => {
                 voiceChannel: vc.channel,
                 connection: null,
                 songs: [],
-                volume: 5,
+                volume: 3,
                 playing: true
             };
 
