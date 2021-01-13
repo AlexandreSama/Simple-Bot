@@ -1,13 +1,8 @@
 const { Util } = require('discord.js');
 const ytdl = require('ytdl-core');
 
-module.exports = {
-	name: 'play',
-	description: 'Play command.',
-	usage: '[command name]',
-	args: true,
-	cooldown: 5,
-	async execute(message, args) {
+module.exports.run = (client, message, member) => {
+	async (message, args) => {
 		const { channel } = message.member.voice;
 		if (!channel) return message.channel.send('I\'m sorry but you need to be in a voice channel to play music!');
 		const permissions = channel.permissionsFor(message.client.user);
@@ -68,4 +63,8 @@ module.exports = {
 			return message.channel.send(`I could not join the voice channel: ${error}`);
 		}
 	}
-};
+}
+
+module.exports.help = {
+    name: 'play'
+}
