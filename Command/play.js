@@ -16,7 +16,7 @@ client.player.on('trackAdd', (message, queue, track) => message.channel.send(`${
 const args = message.content.slice(prefix.length).trim().split(/ +/g);
 const command = args.shift().toLowerCase();
 
-client.player.play(message, args[0], true);
+client.player.play(message, args[0], { firstResult: false});
 
 
 }
