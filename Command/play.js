@@ -1,26 +1,28 @@
 const Discord = require('discord.js');
-const { Player } = require('discord-player');
+const { Player } = require("discord-player");
 
 module.exports.run = (client, message) => {
 
-const player = new Player(client);
+    settings = {
+        prefix: ":",
+        token: "Your Discord Token"
+    };
 
-const prefix = ':';
+    const player = new Player(client);
+    // To easily access the player
+    client.player = player;
+    // add the trackStart event so when a song will be played this message will be sent
+    client.player.on('trackStart', (message, track) => message.channel.send(`Now playing ${track.title}...`))
 
-client.player = player;
+    const args = message.content.slice(settings.prefix.length).trim().split(/ +/g);
+    const command = args.shift().toLowerCase();
 
-client.player.on('trackStart', (message, track) => message.channel.send(`Je joue désormais ${track.title}...`));
+    // !play Despacito
+    // will play "Despacito" in the member voice channel
 
-client.player.on('trackAdd', (message, queue, track) => message.channel.send(`${track.title} a été ajouté a la liste!`))
-
-const args = message.content.slice(prefix.length).trim().split(/ +/g);
-const command = args.shift().toLowerCase();
-
-client.player.play(message, args[0], { firstResult: true});
-
-
+    client.player.play(message, args[0]);
 }
 
 module.exports.help = {
     name: 'play'
-}; 
+}
