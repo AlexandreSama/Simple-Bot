@@ -1,81 +1,65 @@
 const { Util } = require('discord.js');
 const ytdl = require('ytdl-core');
+const ytSearch = require('yt-search');
 
-module.exports.run = async (client, message) => {
+module.exports.run = async (client, message, args) => {
 
-	const prefix = ',';
-	const args = message.content.slice(prefix.length).trim().split(/ +/g);
-	const command = args.shift().toLowerCase();
-	var queue = new Map();
+    const voiceChannel = message.member.voice.channel;
+ 
+    if (!voiceChannel) return message.channel.send('Tu dois être dans un channel vocal pour faire cet commande!');
+    const permissions = voiceChannel.permissionsFor(message.client.user);
+    if (!permissions.has('CONNECT')) return message.channel.send('Tu n\'a pas la permission de faire ca');
+    if (!permissions.has('SPEAK')) return message.channel.send('Tu n\'a pas la permission de faire ca');
+    if (!args.length) return message.channel.send('Tu dois me donner le nom de la musique!');
 
-		if(!args[0]) return;
-        let url = args.join(" ");
-        if(!url.match(/(youtube.com|youtu.be)\/(watch)?(\?v=)?(\S+)?/)) return message.channel.send("Please provide a valid Youtube link!");
-
-        let serverQueue = queue.get(message.guild.id);
-        let vc = message.member.voice;
-
-        if(!vc) return message.channel.send("You are not in a voice channel!");
-
-        if(!vc.channel.permissionsFor(client.user).has('CONNECT') || !vc.channel.permissionsFor(client.user).has('SPEAK')) return message.channel.send("I do not have permission!");
-
-        let songinfo = await ytdl.getInfo(url);
-        let song = {
-            title: songinfo.videoDetails.title,
-            url: songinfo.videoDetails.video_url
-        }
-
-        if(!serverQueue) {
-            let queueConst = {
-                textChannel: message.channel,
-                voiceChannel: vc.channel,
-                connection: null,
-                songs: [],
-                volume: 2,
-                playing: true
-            };
-
-            queue.set(message.guild.id, queueConst);
-            queueConst.songs.push(song);
-
-            try {
-                let connection = await vc.channel.join();
-                queueConst.connection = connection
-                playSong(message.guild, queueConst.songs[0])
-            } catch (error) {
-                console.log(error);
-                queue.delete(message.guild.id);
-                return message.channel.send("There was an error playing the song! Error: " + error);
-            }
+    const validURL = (str) =>{
+        var regex = /(http|https):\/\/(\w+:{0,1}\w*)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
+        if(!regex.test(str)){
+            return false;
         } else {
-            serverQueue.songs.push(song);
-            return message.channel.send(`${song.title} has been added to the queue!`)
-		}
-		
-	/**
-	 * 
-	 * @param {Discord.Guild} guild 
-	 * @param {Object} song 
-	 */
-	async function playSong(guild, song) {
-    let serverQueue = queue.get(guild.id);
-
-    if(!song){
-        serverQueue.voiceChannel.leave();
-        queue.delete(guild.id);
-        return;
+            return true;
+        }
     }
 
-    const dispatcher = serverQueue.connection.play(ytdl(song.url)).on('end', () => {
-        serverQueue.songs.shift();
-        playSong(guild, serverQueue.songs[0]);
-    })
-    .on('error', () => {
-        console.log(error)
-    })
+    if(validURL(args[0])){
 
-    dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
-	}
+        const  connection = await voiceChannel.join();
+        const stream  = ytdl(args[0], {filter: 'audioonly'});
+        connection.play(stream, {seek: 0, volume: 0.5})
+        .on('finish', () =>{
+            voiceChannel.leave();
+            message.channel.send('Adieu mon ami....');
+        });
+
+        await message.reply(`:thumbsup: Je joue maintenant ***${video.title}***`)
+
+        return
+
+    }
+
+    const  connection = await voiceChannel.join();
+
+    const videoFinder = async (query) => {
+        const videoResult = await ytSearch(query);
+
+        return (videoResult.videos.length > 1) ? videoResult.videos[0] : null;
+
+    }
+
+    const video = await videoFinder(args.join(' '));
+
+    if(video){
+        const stream  = ytdl(video.url, {filter: 'audioonly'});
+        connection.play(stream, {seek: 0, volume: 0.5})
+        .on('finish', () =>{
+            voiceChannel.leave();
+            message.channel.send('Adieu mon ami....');
+        });
+
+        await message.reply(`:thumbsup: Je joue maintenant ***${video.title}***`)
+    } else {
+        message.channel.send('Je n\'ai pas trouvé de vidéo avec ce que tu m\'a donné');
+    }
 }
 
 module.exports.help = {

@@ -1,10 +1,13 @@
 const Discord = require('discord.js');
-const { Player } = require('discord-player');
 
-module.exports.run = (client, message) => {
+module.exports.run = async (client, message) => {
 
-    message.guild.voice.kick();
-    message.channel.send("Adieu !")
+    const voiceChannel = message.member.voice.channel;
+ 
+    if(!voiceChannel) return message.channel.send("Tu dois être dans un channel vocal pour couper la musique!");
+    await voiceChannel.leave();
+    await message.channel.send('Adieu mon ami... :smiling_face_with_tear:')
+
 }
 
 module.exports.help = {
