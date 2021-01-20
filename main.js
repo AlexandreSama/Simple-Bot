@@ -6,7 +6,9 @@ const prefix = ',';
 const canvas = require("discord-canvas"),
   goodbyeCanvas = new canvas.Goodbye(),
   welcomeCanvas = new canvas.Welcome();
-
+const { Player } = require("discord-music-player");
+const player = new Player(client);
+    client.player = player;
 fs.readdir('./Command/', (error, f) => {
     if (error) {
       return console.error(error);
@@ -51,4 +53,4 @@ client.on('message', async (message) => {
     }
 
 });
-client.login('NzgzNDYxNDM4NDgzNDY0MjIz.X8bFUg.pxr_1QL0TroVT73KpNCxYjJ0qZo');
+client.login('NzgzNDYxNDM4NDgzNDY0MjIz.X8bFUg.DWSuhqOfMHXxiHOCYPD02id_JHU');

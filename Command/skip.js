@@ -1,14 +1,10 @@
 const Discord = require('discord.js');
 const { Player } = require('discord-player');
 
-module.exports.run = (client, message) => {
+module.exports.run = async (client, message) => {
 
-const player = new Player(client);
-
-client.player = player;
-
-client.player.skip("je passe a la suivante !")
-
+    let song = await client.player.skip(message.guild.id);
+    message.channel.send(`${song.name} a été ignoré!`);
 
 }
 

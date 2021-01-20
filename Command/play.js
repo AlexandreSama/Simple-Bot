@@ -1,65 +1,29 @@
-const { Util } = require('discord.js');
-const ytdl = require('ytdl-core');
-const ytSearch = require('yt-search');
+const Discord = require('discord.js');
 
 module.exports.run = async (client, message, args) => {
 
     const voiceChannel = message.member.voice.channel;
- 
-    if (!voiceChannel) return message.channel.send('Tu dois être dans un channel vocal pour faire cet commande!');
-    const permissions = voiceChannel.permissionsFor(message.client.user);
-    if (!permissions.has('CONNECT')) return message.channel.send('Tu n\'a pas la permission de faire ca');
-    if (!permissions.has('SPEAK')) return message.channel.send('Tu n\'a pas la permission de faire ca');
-    if (!args.length) return message.channel.send('Tu dois me donner le nom de la musique!');
+      if (!voiceChannel) return message.channel.send("Tu dosi être connecté a un channel vocal pour faire cet commande.");
 
-    const validURL = (str) =>{
-        var regex = /(http|https):\/\/(\w+:{0,1}\w*)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
-        if(!regex.test(str)){
-            return false;
-        } else {
-            return true;
-        }
-    }
+      const permissions = voiceChannel.permissionsFor(client.user);
+      if (!permissions.has("CONNECT")) return message.channel.send("Je ne peut pas me connecter dans ce channel, vérifie que j'ai les permissions pour le faire!");
+      if (!permissions.has("SPEAK")) return message.channel.send("Je ne peut pas me connecter dans ce channel, vérifie que j'ai les permissions pour le faire!");
 
-    if(validURL(args[0])){
+      let isPlaying = client.player.isPlaying(message.guild.id);
+      console.log(isPlaying)
+      // If there's already a song playing
+      if(isPlaying){
+          // Add the song to the queue
+          let song = await client.player.addToQueue(message.guild.id, args.join(' '), {}, message.author.tag);
+          song = song.song;
+          message.channel.send(`La chanson ${song.name} a été ajouté a la liste !`);
+      } else {
+          // Else, play the song
+          let song = await client.player.play(message.member.voice.channel, args.join(' '), {}, message.author.tag);
+          song = song.song;
+          message.channel.send(`Je joue maintenant ${song.name}!`);
+      }
 
-        const  connection = await voiceChannel.join();
-        const stream  = ytdl(args[0], {filter: 'audioonly'});
-        connection.play(stream, {seek: 0, volume: 0.5})
-        .on('finish', () =>{
-            voiceChannel.leave();
-            message.channel.send('Adieu mon ami....');
-        });
-
-        await message.reply(`:thumbsup: Je joue maintenant ***${video.title}***`)
-
-        return
-
-    }
-
-    const  connection = await voiceChannel.join();
-
-    const videoFinder = async (query) => {
-        const videoResult = await ytSearch(query);
-
-        return (videoResult.videos.length > 1) ? videoResult.videos[0] : null;
-
-    }
-
-    const video = await videoFinder(args.join(' '));
-
-    if(video){
-        const stream  = ytdl(video.url, {filter: 'audioonly'});
-        connection.play(stream, {seek: 0, volume: 0.5})
-        .on('finish', () =>{
-            voiceChannel.leave();
-            message.channel.send('Adieu mon ami....');
-        });
-
-        await message.reply(`:thumbsup: Je joue maintenant ***${video.title}***`)
-    } else {
-        message.channel.send('Je n\'ai pas trouvé de vidéo avec ce que tu m\'a donné');
-    }
 }
 
 module.exports.help = {
