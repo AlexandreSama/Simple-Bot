@@ -9,6 +9,7 @@ const canvas = require("discord-canvas"),
 const { Player } = require("discord-music-player");
 const player = new Player(client);
     client.player = player;
+    
 fs.readdir('./Command/', (error, f) => {
     if (error) {
       return console.error(error);
