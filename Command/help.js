@@ -14,9 +14,9 @@ module.exports.run = async (client, message, member) => {
 	{ name: ',help', value: 'Donne l\'accés au panneau d\'information' },
 	{ name: ',retard', value: 'Vous préviendra si Alexλndre a du retard'},
 	{ name: ',calendrier', value: 'montre le calendrier de la semaine pour les stream'},
-        { name: ',mutestream', value: 'Permet de mute un viewer s\'il parle trop (accessible uniquement si vous faites parti du staff)'},
-        { name: ',unmutestream', value: 'Permet de demute un viewer a la fin du stream (accessible uniquement si vous faites parti du staff)'},
-        { name: ',stream', value: 'Permet de voir le jeu de ce soir'}
+    { name: ',mutestream', value: 'Permet de mute un viewer s\'il parle trop (accessible uniquement si vous faites parti du staff)'},
+    { name: ',unmutestream', value: 'Permet de demute un viewer a la fin du stream (accessible uniquement si vous faites parti du staff)'},
+    { name: ',stream', value: 'Permet de voir le jeu de ce soir'}
     )
 	.setImage('https://i.imgur.com/wSTFkRM.png')
 	.setTimestamp()
