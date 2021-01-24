@@ -1,5 +1,4 @@
 const Discord = require('discord.js');
-const { Player } = require('discord-player');
 
 module.exports.run = async (client, message) => {
 
