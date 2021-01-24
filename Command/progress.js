@@ -4,7 +4,7 @@ module.exports.run = async (client, message) => {
 
     let progressBar = client.player.createProgressBar(message.guild.id, 20);
 
-        message.channel.send(progressBar);
+    message.channel.send(progressBar);
 
 }
 

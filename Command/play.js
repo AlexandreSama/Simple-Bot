@@ -25,10 +25,6 @@ module.exports.run = async (client, message, args) => {
         message.channel.send(`Je joue maintenant ${song.name}!`);
     }
 
-    let progressBar = client.player.createProgressBar(message.guild.id, 20);
-
-    message.channel.send(progressBar);
-
 }
 
 module.exports.help = {
