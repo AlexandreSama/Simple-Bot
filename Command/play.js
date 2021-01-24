@@ -17,12 +17,12 @@ module.exports.run = async (client, message, args) => {
         // Add the song to the queue
         let song = await client.player.addToQueue(message.guild.id, args.join(' '), {}, message.author.tag);
         song = song.song;
-        message.channel.send(`La chanson ${song.name} a été ajouté a la liste !`);
+        message.channel.send(`La chanson **${song.name}** a été ajouté a la liste !`);
     } else {
         // Else, play the song
         let song = await client.player.play(message.member.voice.channel, args.join(' '), {}, message.author.tag);
         song = song.song;
-        message.channel.send(`Je joue maintenant ${song.name}!`);
+        message.channel.send(`Je joue maintenant **${song.name}**!`);
     }
 
 }
