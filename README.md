@@ -2,7 +2,7 @@
 
 A simple bot for my stream on the Gang
 
-##Functionnality
+## Functionnality
 
 
 - Music Commands
