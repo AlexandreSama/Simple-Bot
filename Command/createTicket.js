@@ -7,13 +7,14 @@ module.exports.run = (client, message) => {
     //On récupère les infos de l'utilisateur
     let user = message.author;
     //On indique que channelName veut dire 'ticket-de-' + le pseudo de l'utilisateur en minuscule !
-    var channelName = `❤️ ticket-de-` + user.username.toLowerCase() + ' ❤️';
+    var channelName = `ticket-de-` + user.username.toLowerCase();
     //On indique que le nom de la catégorie pour les tickets est "tickets"
     let categoryTicketName = "⭐║LA SALLE DU TRÔNE ║⭐"
     //On cherche dans le serveur s'il y a une catégorie se nomment comme categoryTicketName
     let categoryTicket = message.guild.channels.cache.find(cat=> cat.name === categoryTicketName)
     //On cherche s'il existe déjà un ticket pour cet personne
     let channel = message.guild.channels.cache.find(channel => channel.name === channelName)
+    let channelStaff = message.guild.channels.cache.get("715494139592048641");
     let myRole1 = message.guild.roles.cache.get("670908206087929856");
     let myRole2 = message.guild.roles.cache.get("774690121173565470");
 
@@ -44,8 +45,19 @@ module.exports.run = (client, message) => {
         }).then(() => {
             //Puis on revérifie si le channel existe
             let channel = message.guild.channels.cache.find(channel => channel.name === channelName)
-            //Et on envoie un message 
+            //Et on envoie un message
             channel.send("Bienvenue <@" + user.id + ">" + ", tu peut désormais poser tes questions ici et l'on te répondra sous peu !");
+
+            let testRoleListMember = message.guild.roles.cache.get("670908206087929856");
+
+            let idRoleListMember = testRoleListMember.members.map(m => m.user.id);
+
+            idRoleListMember.forEach(element => {
+              let userStaff = client.users.cache.find(user => user.id === element)
+              if(userStaff.presence.status == "online"){
+                channelStaff.send("<@" + userStaff.id + ">" + ", il y a un ticket d'ouvert !")
+              }
+            });
         })
         //Si le channel existe déjà
     }else {

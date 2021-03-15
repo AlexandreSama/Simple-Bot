@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const client = new Discord.Client();
+const client = new Discord.Client({ ws: { intents: ['GUILDS', 'GUILD_MESSAGES', 'GUILD_PRESENCES'] } });
 client.commands = new Discord.Collection();
 const fs = require('fs');
 const prefix = ',';
@@ -54,4 +54,4 @@ client.on('message', async (message) => {
     }
 
 });
-client.login('NzgzNDYxNDM4NDgzNDY0MjIz.X8bFUg.u63fgzA8cdBafkwPAsJVIjBxIIw');
+client.login('');
