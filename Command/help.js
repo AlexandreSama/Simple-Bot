@@ -16,7 +16,9 @@ module.exports.run = async (client, message, member) => {
 	{ name: ',calendrier', value: 'montre le calendrier de la semaine pour les stream'},
     { name: ',mutestream', value: 'Permet de mute un viewer s\'il parle trop (accessible uniquement si vous faites parti du staff)'},
     { name: ',unmutestream', value: 'Permet de demute un viewer a la fin du stream (accessible uniquement si vous faites parti du staff)'},
-    { name: ',stream', value: 'Permet de voir le jeu de ce soir'}
+    { name: ',stream', value: 'Permet de voir le jeu de ce soir'},
+    { name: ',createticket', value: 'Permet de crée un ticket'},
+    { name: ',closeticket', value: 'Permet de supprimer un ticket'}
     )
 	.setImage('https://i.imgur.com/wSTFkRM.png')
 	.setTimestamp()
