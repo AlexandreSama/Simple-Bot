@@ -14,7 +14,8 @@ module.exports.run = (client, message) => {
     let categoryTicket = message.guild.channels.cache.find(cat=> cat.name === categoryTicketName)
     //On cherche s'il existe déjà un ticket pour cet personne
     let channel = message.guild.channels.cache.find(channel => channel.name === channelName)
-    let myRole = message.guild.roles.cache.get("717082752121569311");
+    let myRole1 = message.guild.roles.cache.get("670908206087929856");
+    let myRole2 = message.guild.roles.cache.get("774690121173565470");
 
     //Si il n'y a pas de ticket pour cet utilisateur
     if(channel === undefined){
@@ -32,7 +33,11 @@ module.exports.run = (client, message) => {
                   allow: 'VIEW_CHANNEL'
                 },
                 {
-                  id: myRole.id,
+                  id: myRole1.id,
+                  allow: 'VIEW_CHANNEL'
+                },
+                {
+                  id: myRole2.id,
                   allow: 'VIEW_CHANNEL'
                 }
               ]
