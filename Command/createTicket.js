@@ -7,7 +7,7 @@ module.exports.run = (client, message) => {
     //On récupère les infos de l'utilisateur
     let user = message.author;
     //On indique que channelName veut dire 'ticket-de-' + le pseudo de l'utilisateur en minuscule !
-    var channelName = `ticket-de-` + user.username.toLowerCase();
+    var channelName = `❤️ ticket-de-` + user.username.toLowerCase() + ' ❤️';
     //On indique que le nom de la catégorie pour les tickets est "tickets"
     let categoryTicketName = "⭐║LA SALLE DU TRÔNE ║⭐"
     //On cherche dans le serveur s'il y a une catégorie se nomment comme categoryTicketName
