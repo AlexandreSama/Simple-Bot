@@ -48,18 +48,34 @@ module.exports.run = (client, message) => {
             //Et on envoie un message
             channel.send("Bienvenue <@" + user.id + ">" + ", tu peut désormais poser tes questions ici et l'on te répondra sous peu !");
 
-            let testRoleListMember = message.guild.roles.cache.get("670908206087929856");
+            let testRoleListMember = message.guild.roles.cache.get("774690121173565470");
 
             let idRoleListMember = testRoleListMember.members.map(m => m.user.id);
 
+            let idStaffConnected = [];
+
             idRoleListMember.forEach(element => {
               let userStaff = client.users.cache.find(user => user.id === element)
-              if(userStaff.presence.status == "online"){
-                channelStaff.send("<@" + userStaff.id + ">" + ", il y a un ticket d'ouvert !")
+              if(userStaff.presence.status == "online" || "dnd"){
+                idStaffConnected.push("<@" + userStaff.id + ">")
               }
             });
+
+            function sendEmbed(){
+              const exampleEmbed = new Discord.MessageEmbed()
+              .setColor('#0099ff')
+              .setTitle('Nouveau Ticket !')
+              .setAuthor(message.author.username)
+              .setDescription(message.author.username + ' A crée un nouveau ticket !')
+              .addFields(
+                { name: 'On vous demande !', value:  idStaffConnected.join(', ') + " sont demandés dans le channel : " + "#" + channelName},
+              )
+              .setTimestamp()
+              .setFooter('Embed crée par Alexandre');
+              channelStaff.send(exampleEmbed)
+            };
+            setTimeout(sendEmbed(), 8000);
         })
-        //Si le channel existe déjà
     }else {
         //On le préviens
         message.channel.send("Tu a déjà un ticket ouvert !")
