@@ -66,7 +66,7 @@ module.exports.run = (client, message) => {
               .setColor('#0099ff')
               .setTitle('Nouveau Ticket !')
               .setAuthor(message.author.username)
-              .setDescription(message.author.username + ' A crée un nouveau ticket !')
+              .setDescription("**" + message.author.username + "**" + ' a crée un nouveau ticket !')
               .addFields(
                 { name: 'On vous demande !', value:  idStaffConnected.join(', ') + " sont demandés dans le channel : " + "#" + channelName},
               )
