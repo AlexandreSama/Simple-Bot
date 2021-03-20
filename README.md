@@ -1,16 +1,10 @@
 # Simple-Bot
 
-A simple bot for my stream on the Gang
+A simple bot for the Gang Des Chouchous
 
 ## Functionnality
 
-
 - Music Commands
-
 - Card events
-
 - XP System
-
-- mute/unmute/ban/unban system
-
 - Stream system
